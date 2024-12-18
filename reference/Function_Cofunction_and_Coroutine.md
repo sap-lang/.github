@@ -2,30 +2,29 @@
 
 > Concept: the word `routine` just exactly means `function`
 
-please read following document it is **REALLY** important to understand why we design our language in this way.
+Please read the following document. It is **REALLY** important to understand why we design our language in this way.
 
 ### What is a normal routine?
 
 A normal routine is a function that is called and executed in a synchronous way. When a function is called, it will run until it returns a value. The function will block the execution of the program until it returns.
 
-### What does `co` means in math?
+### What does `co` mean in math?
 
 `co` is a prefix that means together or with. It is used in many mathematical terms to indicate that two things are combined or working together.
 
-for instance, `sine` is a function that takes an angle and returns the ratio of the length of the opposite side to the length of the hypotenuse of a right triangle. `cosine` is a function that takes an angle and returns the ratio of the length of the adjacent side to the length of the hypotenuse of a right triangle.
+For instance, `sine` is a function that takes an angle and returns the ratio of the length of the opposite side to the length of the hypotenuse of a right triangle. `cosine` is a function that takes an angle and returns the ratio of the length of the adjacent side to the length of the hypotenuse of a right triangle.
 
 ### What is a `co` routine?
 
-A coroutine is a function that can be paused and resumed. When a coroutine is called, it will run until it reaches a `yield` ( which is `<-` operator ) statement. The coroutine can then be resumed later, and it will continue running from where it left off.
+A coroutine is a function that can be paused and resumed. When a coroutine is called, it will run until it reaches a `yield` (which is `<-` operator) statement. The coroutine can then be resumed later, and it will continue running from where it left off.
 
 ### TL;DR
 
-A coroutine is a **function** that can be **paused** and **resumed** with(or without) value.
+A coroutine is a **function** that can be **paused** and **resumed** with (or without) value.
 
 ### Our language design
 
-in `sap` we **DO NOT** have normal routine(function), we only have coroutine(well cofunction).
-
+In `sap` we **DO NOT** have normal routine (function), we only have coroutine (well, cofunction).
 
 ```sap
 a = \a ->
@@ -35,37 +34,48 @@ a = \a ->
     a + 4
 ```
 
+### How to call a cofunction
 
-### how to call a cofunction
-due to our language design has pattern matching, we can match a function call either with one value or with two values.
+Due to our language design having pattern matching, we can match a function call either with one value or with two values.
 
-if you just want to call a function, you can just call it with one value.
+If you just want to call a function, you can just call it with one value.
 
 ```sap
 a = a 1
 2 = ^a
 ```
 
-TODO: what the fuck
+### How to enter the continuation of a cofunction
 
-if you want to call a cofunction, remember co function has an extra return value which is the state of the function.
+After calling the cofunction, the return value of a cofunction will be a value with its continuation.
 
-if you are familiar with `C` and `ucontext`, you can think of the state as the `ucontext` of the function.
+In sap language, any value could carry an extra field called next, which is the **state** of the cofunction.
 
-after the cofunction is ended, the state will be `null`.
+If you are familiar with `C` and `ucontext`, you can think of the **state** as the `ucontext` of the function.
+
+After the cofunction has ended, the **state** will be `null`.
 
 ```sap
-{state, res} = a 1
-2 = ^res
-{state, res} = state res
-4 = ^res
-{state, res} = state res
-7 = ^res
-{state, res} = state res
-11 = ^res
-null = ^state
+a = a 1
+2 = ^a
+a.next a
 ```
 
+Or using pattern matching to split value, thus the value no longer carries the next field
+
+```sap
+value -> next = a 1
+```
+
+## Syntax Sugar for No Parameter Cofunction
+
+If a cofunction does not have any parameter, you can define it with `_{}`
+
+```sap
+f = _{
+    1
+}
+```
 
 ### Reference
 - https://en.wikipedia.org/wiki/Coroutine

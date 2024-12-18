@@ -2,8 +2,7 @@
 
 > Implicit Parameters as `coeffect` in the context of `effects`.
 
-Implicit parameters are a way to pass parameters to functions implicitly. 
-
+Implicit parameters are a way to pass parameters to functions implicitly.
 
 ## What is effect and coeffect?
 
@@ -11,11 +10,9 @@ Algebraic Effects and Handlers are a way to model effects in programming languag
 
 In the context of `effects`, `implicit parameters` are considered as `coeffect`.
 
-
 ## Syntax
 
-in function definition after `\`(lambda) with following neseccary parameters, you can then define implicit parameters after `?` seperator.
-
+In function definition after `\` (lambda) with following necessary parameters, you can then define implicit parameters after `?` separator.
 
 ```sap
 sort ::= \ [] ? cmp -> []

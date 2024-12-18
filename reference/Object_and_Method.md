@@ -95,7 +95,7 @@ flowchart LR
     C -->|extend| B
     B -->|extend| A
     A -->|extend| Object
-    Object -->|extend| null
+    Object -->|extend| Object
 ```
 
 finding `to_str` method of object c of C is like:
