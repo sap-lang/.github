@@ -1,9 +1,6 @@
 `\` could be replaced by 
 $$ \lambda $$
 
-`^a` could be replaced by 
-$$\hat a$$
-
 `<-` could be replaced by
 $$\leftarrow$$
 

@@ -29,27 +29,3 @@ a ::= \ x y -> x + y
 ```
 
 in the above example, `a` is a symbol which is storing a slot that stores two functions, the first function takes one argument and returns the argument plus one, the second function takes two arguments and returns the sum of the two arguments.
-
-## Context
-
-symbols have meaning in a context.
-
-```sap
-
-# the global context
-a = 1
-
-    # the local context
-    a = 2
-    b = 3
-    2 = ^a
-
-1 = ^a
-undefined = ^b
-
-```
-
-```sap
-if ::= \ true x _c y -> x
-if ::= \ false x _c y -> y
-```

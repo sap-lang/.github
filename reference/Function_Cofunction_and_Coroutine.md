@@ -42,7 +42,7 @@ If you just want to call a function, you can just call it with one value.
 
 ```sap
 a = a 1
-2 = ^a
+2 == a
 ```
 
 ### How to enter the continuation of a cofunction
@@ -56,9 +56,8 @@ If you are familiar with `C` and `ucontext`, you can think of the **state** as t
 After the cofunction has ended, the **state** will be `null`.
 
 ```sap
-a = a 1
-2 = ^a
-a.next a
+a -> next = a 1
+next a
 ```
 
 Or using pattern matching to split value, thus the value no longer carries the next field
