@@ -66,6 +66,28 @@ Or using pattern matching to split value, thus the value no longer carries the n
 value -> next = a 1
 ```
 
+### Replace Current Continuation with Inner
+
+```sap
+f = \x -> {
+    <- x + 2
+    <- x + 3
+    <- x + 4
+}
+
+g = \y -> {
+    <- y + 1
+    <<- f y
+    <- y + 5
+}
+
+a = 0
+a -> next = g a
+puts a
+```
+
+the `<<-` operator will replace the current continuation with the inner continuation.
+
 ## Syntax Sugar for No Parameter Cofunction
 
 If a cofunction does not have any parameter, you can define it with `_{}`
