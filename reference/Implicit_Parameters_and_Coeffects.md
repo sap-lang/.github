@@ -16,10 +16,11 @@ In function definition after `\` (lambda) with following necessary parameters, y
 
 ```sap
 sort ::= \ [] ? cmp -> []
-sort ::= \ [x, ...xs] ? cmp ->
+sort ::= \ [x, ...xs] ? cmp -> {
     smaller = filter (\y -> cmp x y) xs
     larger = filter (\y -> !(cmp x y)) xs
     (sort cmp smaller) + [x] + (sort cmp larger)
+}
 
 # in current context, we define a cmp function to compare two integer elements
 cmp = \x y -> x < y

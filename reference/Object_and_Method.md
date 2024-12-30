@@ -19,27 +19,27 @@ interms of object oriented programming, there are some concepts that we must und
 method could be defined as a multi-dispatched function that is binded to the object.
 
 ```sap
-Asteroid   = { clone Object | name: :Asteroid  }
-SpaceShip  = { clone Object | name: :SpaceShip }
+Asteroid   = _{ __name__: "Asteroid" }
+SpaceShip  = _{ __name__: "SpaceShip" }
 
-Asteroid.collide_with ::= \{...| proto.name: :SpaceShip} -> 
+collide_with ::= \^{__name__: "Asteroid"} ^{__name__: "SpaceShip"} -> 
     "Ahhhh F***!"
 
-Asteroid.collide_with ::= \{...| proto.name: :Asteroid} -> 
+collide_with ::= \^{__name__: "Asteroid"} ^{__name__: "Asteroid"} ->
     "hi bro"
 
-SpaceShip.collide_with ::= \{...| proto.name: :Asteroid} ->
+collide_with ::=  \^{__name__: "SpaceShip"} ^{__name__: "Asteroid"} ->
     "What was that?"
 
-SpaceShip.collide_with ::= \{...| proto.name: :SpaceShip} ->
+collide_with ::= \^{__name__: "SpaceShip"} ^{__name__: "SpaceShip"} ->
     "Boom!!! shaka laka"
 
-a = new Asteroid
-s = new SpaceShip
-a.collide_with s # "Ahhhh F***!"
-a.collide_with a # "hi bro"
-s.collide_with a # "What was that?"
-s.collide_with s # "Boom!!! shaka laka"
+a = Asteroid ()
+s = SpaceShip ()
+collide_with a s # "Ahhhh F***!"
+collide_with a a # "hi bro"
+collide_with s a # "What was that?"
+collide_with s s # "Boom!!! shaka laka"
 ```
 
 ## Object
@@ -58,7 +58,7 @@ I will write a simple example to explain what is `inductive`.
 
 ```sap
 push ::= \ null -> []
-push ::= \ head arr -> [head | arr]
+push ::= \ head arr -> push arr head
 ```
 
 ```mermaid
@@ -73,7 +73,7 @@ in the above example, we have defined a list data structure, which is a recursiv
 
 ```sap
 take ::= \[] -> null
-take ::= \[head | tail] -> head
+take ::= \^[head, ...tail] -> head
 ```
 
 ```mermaid

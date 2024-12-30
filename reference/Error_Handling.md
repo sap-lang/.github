@@ -22,26 +22,6 @@ graph TD
     C --> D
 ```
 
+you can use `effect` to handle error in sap
 
-```elixir
-f = \ -> {
-    # scope 0
-    
-    # due to it is a cofunction, we can return the control flow
-    res -> catch = try \ -> {
-        # scope 1
-    }
-
-    if typeof res == "error" {
-        catch \e -> {
-            # scope 2
-        }
-    }
-
-    # finally
-    # scope 3
-}
-
-
-
-```
+# ⚠️Warning⚠️: under construction

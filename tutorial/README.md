@@ -21,8 +21,8 @@ a = 1 # shadowing
 ### pattern matching
 
 ```sap
-[a, b] = [1, 2]
-[a, ...b] = [1, 2, 3]
+^[a, b] = [1, 2]
+^[a, ...b] = [1, 2, 3]
 
 ```
 

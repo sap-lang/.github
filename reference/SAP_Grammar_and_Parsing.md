@@ -9,14 +9,14 @@ SAP is a language that is designed to be easy to read and write. The syntax is i
 SAP has a C-like syntax, with a focus on simplicity and readability.
 
 ```sap
-if a == 1 {
+(a == 1) ? {
     f 1
     f 2
     f 3
-} else {
-    f(4);
-    f(5);
-    f(6);
+} : {
+    f 4
+    f 5
+    f 6
 }
 
 arr = [1, 2, 3, 4, 5]

@@ -27,11 +27,12 @@ A coroutine is a **function** that can be **paused** and **resumed** with (or wi
 In `sap` we **DO NOT** have normal routine (function), we only have coroutine (well, cofunction).
 
 ```sap
-a = \a ->
+a = \a -> {
     a = <- a + 1
     a = <- a + 2
     a = <- a + 3
     a + 4
+}
 ```
 
 ### How to call a cofunction
